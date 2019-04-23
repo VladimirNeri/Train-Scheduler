@@ -52,7 +52,6 @@ var config = {
     $("#first-input").val("");
     $("#frequency-input").val("");
 
-    return false; 
 });
 
 
