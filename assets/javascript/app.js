@@ -101,7 +101,7 @@ var firebaseConfig = {
       $("<td>").text(tMinutesTillTrain),
   );
   
-    $("<tbody>").append(newRow);
+    $("#tbody").append(newRow);
 
     // Handle the errors Activity 19
   }, function(errorObject) {
