@@ -99,8 +99,7 @@ var config = {
   );
   
     $("#train-table > tbody").append(newRow);
-  
-  // Handle the errors
+
 
   });
 
