@@ -97,7 +97,7 @@ var firebaseConfig = {
       $("<td>").text(tDestination),
       $("<td>").text(tFrequency),
       $("<td>").text(fTrain),
-      $("<td>").text(nextTrain),
+      $("<td>").text(currentTime),
       $("<td>").text(tMinutesTillTrain),
   );
   
