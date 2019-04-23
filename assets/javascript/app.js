@@ -1,7 +1,8 @@
-
+$(document).ready(function() {
+  
 // Initialize Firebase
 
-var config = {
+var firebaseConfig = {
     apiKey: "AIzaSyBbBhxAjgVFyyFsYYBbwWYVxzGY3JFlhhI",
     authDomain: "train-scheduler-481f2.firebaseapp.com",
     databaseURL: "https://train-scheduler-481f2.firebaseio.com",
@@ -10,7 +11,7 @@ var config = {
     messagingSenderId: "130221245398"
 };
 
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseConfig);
 
   var database = firebase.database();
 
@@ -54,17 +55,17 @@ var config = {
 
 });
 
-
 // Activity 17
-// Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
-  database.ref().on("child_added", function(snapshot) {
-    console.log(snapshot.val());
+// Create Firebase event for adding new train to the database and a row in the html when a user adds an entry
+  database.ref().on("child_added", function(childSnapshot) {
+    console.log(childSnapshot.val());
 
-    var tName = snapshot.val().trainName;
-    var tDestination = snapshot.val().destination;
-    var fTrain = snapshot.val().firstTrain;
-    var tFrequency = snapshot.val().frequency;
+    var tName = childSnapshot.val().trainName;
+    var tDestination = childSnapshot.val().destination;
+    var fTrain = childSnapshot.val().firstTrain;
+    var tFrequency = childSnapshot.val().frequency;
 
+    
 // Train Info
     console.log(tName);
     console.log(tDestination);
@@ -72,12 +73,11 @@ var config = {
     console.log(tFrequency);
 
 // Activity 21 
+  var firstTimeConverted = moment(fTrain, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
 
   var currentTime = moment();
     console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-  var firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
 
   var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffTime);
@@ -91,16 +91,25 @@ var config = {
   var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
   
+    // Activity 19 JQUERY DUMP
   var newRow = $("<tr>").append(
       $("<td>").text(tName),
       $("<td>").text(tDestination),
       $("<td>").text(fTrain),
       $("<td>").text(tFrequency),
+      $("<td>").text(nextTrain),
+      $("<td>").text(tMinutesTillTrain),
   );
   
-    $("#train-table > tbody").append(newRow);
+    $("<tbody>").append(newRow);
 
+    // Handle the errors Activity 19
+  }, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
 
   });
+  
+});
+  
 
   
