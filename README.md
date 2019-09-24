@@ -1,4 +1,4 @@
-# Train-Scheduler - https://vladimirneri.github.io/Train-Scheduler/
+## Train-Scheduler - https://vladimirneri.github.io/Train-Scheduler/
 
 ### Overview
 
